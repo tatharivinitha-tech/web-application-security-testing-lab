@@ -1,0 +1,25 @@
+# Commands index — quick reference
+
+- Create evidence dirs:
+  - `mkdir -p ~/WK_Project/evidence/week7 ~/WK_Project/evidence/week8`
+
+- Baseline host info:
+  - `id > ~/WK_Project/evidence/week7/id.txt`
+  - `uname -a > ~/WK_Project/evidence/week7/uname.txt`
+  - `cat /etc/os-release > ~/WK_Project/evidence/week7/os_release.txt`
+
+- Network/process enumeration:
+  - `sudo ss -tulpen > ~/WK_Project/evidence/week7/ss_listening.txt`
+  - `ps aux --sort=-%mem | head -n 50 > ~/WK_Project/evidence/week7/top_procs.txt`
+
+- SUID/SGID & world-writable:
+  - `sudo find / -perm -4000 -type f -exec ls -ldb {} \; > .../suid_list.txt`
+  - `sudo find / -perm -2000 -type f -exec ls -ldb {} \; > .../sgid_list.txt`
+  - `sudo find / -xdev -type f -perm -0002 -ls > .../world_writable_files.txt`
+
+- LinPEAS quick scan:
+  - `curl -fsSL <linpeas_url> -o linpeas.sh && chmod +x linpeas.sh && ./linpeas.sh | tee linpeas_output.txt`
+
+- Risk register & CVSS:
+  - Create CSV header and append rows → `evidence/week8/risk_register.csv`
+  - Create `CVSS_TEMPLATE_WK8.txt` and populate per vuln.
